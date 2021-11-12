@@ -8,6 +8,7 @@ Combo do dia
 Se der:
 Sistema de cupons após n compras
 Sistema do "Esqueci a senha"
+Sistema de escolha de imagens dos personagens do bob esponja para a imagem de usuario
 
 ######
 Cardápio:
