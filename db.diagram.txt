@@ -1,0 +1,41 @@
+Table pratos as P {
+  id int [pk, increment]
+  nome varchar [not null, unique]
+  descricao varchar [not null, unique]
+  imagem int [not null, unique]
+  categoria int [not null]
+  preco float [not null]
+}
+
+Table categorias as C {
+  id int [pk, increment]
+  nome varchar [not null, unique]
+}
+
+Table imagens as I {
+  id int [pk, increment]
+  link varchar [not null, unique]
+}
+
+Table usuarios as U {
+  id int [pk, increment]
+  nome varchar [not null]
+  imagem int [not null]
+  is_admin boolean [not null, default: `false`]
+  email varchar [not null, unique]
+  senha varchar [not null]
+}
+
+Table favoritos as F {
+  id int [pk, increment]
+  user_id int [not null] 
+  prato_id int [not null]
+}
+
+//Referencias
+
+Ref: P.categoria > C.id
+Ref: P.imagem - I.id
+Ref: U.id > F.user_id 
+Ref: F.prato_id < P.id
+Ref: U.imagem - I.id
