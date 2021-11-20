@@ -83,6 +83,8 @@ GEM
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     ffi (1.15.4)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -195,6 +197,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  figaro
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
@@ -209,4 +212,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.2.22
+   2.2.27
