@@ -46,5 +46,6 @@ gem 'validates_timeliness'
 
 gem 'faker'
 
+#User authentication
 gem 'devise'
 gem 'simple_token_authentication'
