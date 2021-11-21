@@ -130,3 +130,495 @@ FOREIGN KEY ("meal_id")
   [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3100836347500290315)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3100836347500290315)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3100836347500290315)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3100836347500290315)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddFieldsToUser (20211120133436)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "authentication_token" character varying(30)[0m
+  [1m[35m (120.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_authentication_token" ON "users" ("authentication_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211120133436"]]
+  [1m[36mTRANSACTION (28.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "bom@dia"], ["id", 1], ["LIMIT", 1]]
+  [1m[35m (54.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."authentication_token" = $1[0m  [["authentication_token", "LizFMeRqafzaN4wwEyj4"]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "name" = $2, "authentication_token" = $3 WHERE "users"."id" = $4[0m  [["updated_at", "2021-11-20 13:38:27.317240"], ["name", "bom dia"], ["authentication_token", "LizFMeRqafzaN4wwEyj4"], ["id", 1]]
+  [1m[36mTRANSACTION (40.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3100836347500290315)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3100836347500290315)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/login/" for 127.0.0.1 at 2021-11-20 10:52:00 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant UserController
+Did you mean?  UsersController):
+  
+Started GET "/login/" for 127.0.0.1 at 2021-11-20 10:52:23 -0300
+Processing by UsersController#login as */*
+Completed 401 Unauthorized in 41ms (ActiveRecord: 0.0ms | Allocations: 1264)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:52:23 -0300
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.8ms | Allocations: 521)
+Completed 200 OK in 18ms (Views: 13.6ms | ActiveRecord: 0.0ms | Allocations: 4449)
+
+
+Started GET "/login/" for 127.0.0.1 at 2021-11-20 10:53:11 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bom@dia", "password"=>"[FILTERED]", "user"=>{"email"=>"bom@dia"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 3.1ms | Allocations: 169)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:53:11 -0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.8ms | Allocations: 209)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.0ms | Allocations: 1044)
+
+
+Started GET "/users/login" for 127.0.0.1 at 2021-11-20 10:53:59 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/users/login"):
+  
+Started GET "/login" for 127.0.0.1 at 2021-11-20 10:54:10 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bom@dia", "senha"=>"123456", "user"=>{"email"=>"bom@dia"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 173)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:54:10 -0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | Allocations: 8)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 332)
+
+
+Started GET "/show" for 127.0.0.1 at 2021-11-20 10:54:41 -0300
+Processing by UsersController#show as */*
+  Parameters: {"email"=>"bom@dia", "password"=>"[FILTERED]", "user"=>{"email"=>"bom@dia"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:54:41 -0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.8ms | Allocations: 8)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 306)
+
+
+Started GET "/shower" for 127.0.0.1 at 2021-11-20 10:54:51 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/shower"):
+  
+Started GET "/show" for 127.0.0.1 at 2021-11-20 10:54:55 -0300
+Processing by UsersController#show as */*
+  Parameters: {"email"=>"bom@dia", "password"=>"[FILTERED]", "user"=>{"email"=>"bom@dia"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:54:55 -0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.2ms | Allocations: 7)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 304)
+
+
+Started GET "/logindafaf" for 127.0.0.1 at 2021-11-20 10:54:59 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/logindafaf"):
+  
+Started GET "/login" for 127.0.0.1 at 2021-11-20 10:55:06 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bom@dia", "senha"=>"123456", "user"=>{"email"=>"bom@dia"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/" for 127.0.0.1 at 2021-11-20 10:55:06 -0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/bernardo/.rvm/gems/ruby-3.0.2/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | Allocations: 7)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 304)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (21.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:14:57.787264"], ["updated_at", "2021-11-20 14:14:57.787264"]]
+  [1m[36mTRANSACTION (56.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:14:57.868160"], ["updated_at", "2021-11-20 14:14:57.868160"]]
+  [1m[36mTRANSACTION (21.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:14:57.892934"], ["updated_at", "2021-11-20 14:14:57.892934"]]
+  [1m[36mTRANSACTION (21.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:14:57.917973"], ["updated_at", "2021-11-20 14:14:57.917973"]]
+  [1m[36mTRANSACTION (31.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:15:21.130311"], ["updated_at", "2021-11-20 14:15:21.130311"]]
+  [1m[36mTRANSACTION (104.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:15:21.240002"], ["updated_at", "2021-11-20 14:15:21.240002"]]
+  [1m[36mTRANSACTION (42.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:15:21.285464"], ["updated_at", "2021-11-20 14:15:21.285464"]]
+  [1m[36mTRANSACTION (31.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:15:21.322887"], ["updated_at", "2021-11-20 14:15:21.322887"]]
+  [1m[36mTRANSACTION (25.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:16:21.763170"], ["updated_at", "2021-11-20 14:16:21.763170"]]
+  [1m[36mTRANSACTION (31.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:16:21.798171"], ["updated_at", "2021-11-20 14:16:21.798171"]]
+  [1m[36mTRANSACTION (21.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:16:21.822706"], ["updated_at", "2021-11-20 14:16:21.822706"]]
+  [1m[36mTRANSACTION (21.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:16:21.847725"], ["updated_at", "2021-11-20 14:16:21.847725"]]
+  [1m[36mTRANSACTION (29.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:17:04.111992"], ["updated_at", "2021-11-20 14:17:04.111992"]]
+  [1m[36mTRANSACTION (36.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:17:04.154439"], ["updated_at", "2021-11-20 14:17:04.154439"]]
+  [1m[36mTRANSACTION (23.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:17:04.190077"], ["updated_at", "2021-11-20 14:17:04.190077"]]
+  [1m[36mTRANSACTION (23.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:17:04.225877"], ["updated_at", "2021-11-20 14:17:04.225877"]]
+  [1m[36mTRANSACTION (23.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:17:30.848863"], ["updated_at", "2021-11-20 14:17:30.848863"]]
+  [1m[36mTRANSACTION (86.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:17:30.938005"], ["updated_at", "2021-11-20 14:17:30.938005"]]
+  [1m[36mTRANSACTION (36.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:17:30.978153"], ["updated_at", "2021-11-20 14:17:30.978153"]]
+  [1m[36mTRANSACTION (30.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:17:31.015588"], ["updated_at", "2021-11-20 14:17:31.015588"]]
+  [1m[36mTRANSACTION (24.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mMeal Load (19.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" ORDER BY "meals"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMeal Load (0.8ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (5011.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "SiriCascudo_development"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hamburgueres"], ["created_at", "2021-11-20 14:19:33.098861"], ["updated_at", "2021-11-20 14:19:33.098861"]]
+  [1m[36mTRANSACTION (91.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "acompanhamentos"], ["created_at", "2021-11-20 14:19:33.195473"], ["updated_at", "2021-11-20 14:19:33.195473"]]
+  [1m[36mTRANSACTION (41.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sobremesas"], ["created_at", "2021-11-20 14:19:33.241931"], ["updated_at", "2021-11-20 14:19:33.241931"]]
+  [1m[36mTRANSACTION (24.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bebidas"], ["created_at", "2021-11-20 14:19:33.277419"], ["updated_at", "2021-11-20 14:19:33.277419"]]
+  [1m[36mTRANSACTION (25.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:28:27 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.5ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 2.5ms | ActiveRecord: 0.5ms | Allocations: 4704)
+
+
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMeal Create (45.8ms)[0m  [1m[32mINSERT INTO "meals" ("name", "description", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hamburguer de siri"], ["description", "Melhor prato do restaurante"], ["price", 10.0], ["category_id", 1], ["created_at", "2021-11-20 14:30:20.405334"], ["updated_at", "2021-11-20 14:30:20.405334"]]
+  [1m[36mTRANSACTION (52.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals" ORDER BY "meals"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:30:56 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 5.8ms | ActiveRecord: 2.3ms | Allocations: 8500)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:37:34 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.5ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 7.9ms | ActiveRecord: 4.3ms | Allocations: 8499)
+
+
+Started GET "/api/v1/meals/show/1" for 127.0.0.1 at 2021-11-20 11:37:49 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.8ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 10ms (Views: 1.0ms | ActiveRecord: 1.3ms | Allocations: 1582)
+
+
+Started GET "/api/v1/meals/show/2" for 127.0.0.1 at 2021-11-20 11:37:54 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.6ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 404 Not Found in 5ms (ActiveRecord: 0.6ms | Allocations: 538)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-20 11:52:28 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"Hamburguer de Siri de Luxo", "category_id"=>1, "description"=>"Um hamburguer de siri mais caro", "price"=>15.0, "meal"=>{"name"=>"Hamburguer de Siri de Luxo", "description"=>"Um hamburguer de siri mais caro", "price"=>15.0, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Create (0.8ms)[0m  [1m[32mINSERT INTO "meals" ("name", "description", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hamburguer de Siri de Luxo"], ["description", "Um hamburguer de siri mais caro"], ["price", 15.0], ["category_id", 1], ["created_at", "2021-11-20 14:52:28.374371"], ["updated_at", "2021-11-20 14:52:28.374371"]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (30.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+Completed 201 Created in 70ms (Views: 0.5ms | ActiveRecord: 38.9ms | Allocations: 15651)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:52:45 -0300
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 1149)
+
+
+Started GET "/api/v1/meals/show/2" for 127.0.0.1 at 2021-11-20 11:52:53 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 837)
+
+
+Started GET "/api/v1/meals/show/3" for 127.0.0.1 at 2021-11-20 11:52:56 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mMeal Load (0.6ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms | Allocations: 516)
+
+
+Started GET "/api/v1/meals/show/1" for 127.0.0.1 at 2021-11-20 11:53:00 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.7ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 0.7ms | Allocations: 617)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:56:37 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.7ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 3.4ms | Allocations: 8602)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-20 11:56:44 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"Hamburguer de Siri de Luxo", "category_id"=>1, "price"=>15.0, "meal"=>{"name"=>"Hamburguer de Siri de Luxo", "price"=>15.0, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+Completed 422 Unprocessable Entity in 2824ms (ActiveRecord: 3.7ms | Allocations: 1346660)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 11:56:50 -0300
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 999)
+
+
+Started GET "/api/v1/meals/show/1" for 127.0.0.1 at 2021-11-20 12:03:33 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 4.1ms | Allocations: 7453)
+
+
+Started PATCH "/api/v1/meals/update/1" for 127.0.0.1 at 2021-11-20 12:04:11 -0300
+Processing by Api::V1::MealsController#update as */*
+  Parameters: {"description"=>"Um verdadeiro clássico", "id"=>"1", "meal"=>{"description"=>"Um verdadeiro clássico"}}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:24:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mMeal Update (0.4ms)[0m  [1m[33mUPDATE "meals" SET "description" = $1, "updated_at" = $2 WHERE "meals"."id" = $3[0m  [["description", "Um verdadeiro clássico"], ["updated_at", "2021-11-20 15:04:11.137834"], ["id", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mTRANSACTION (30.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+Completed 200 OK in 47ms (Views: 0.3ms | ActiveRecord: 31.9ms | Allocations: 8058)
+
+
+Started GET "/api/v1/meals/show/1" for 127.0.0.1 at 2021-11-20 12:04:17 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 630)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 12:13:27 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.5ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 8.9ms | ActiveRecord: 4.8ms | Allocations: 8601)
+
+
+Started GET "/api/v1/meals/show/2" for 127.0.0.1 at 2021-11-20 12:13:37 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.7ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 200 OK in 9ms (Views: 1.1ms | ActiveRecord: 1.1ms | Allocations: 1584)
+
+
+Started DELETE "/api/v1/meals/delete/2" for 127.0.0.1 at 2021-11-20 12:13:42 -0300
+Processing by Api::V1::MealsController#delete as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:32:in `delete'
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.4ms | Allocations: 547)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 12:14:28 -0300
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 845)
+
+
+Started PATCH "/api/v1/meals/update/2" for 127.0.0.1 at 2021-11-20 12:15:01 -0300
+Processing by Api::V1::MealsController#update as */*
+  Parameters: {"description"=>"Esse prato é uma sacanagem", "id"=>"2", "meal"=>{"description"=>"Esse prato é uma sacanagem"}}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:24:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mMeal Update (0.3ms)[0m  [1m[33mUPDATE "meals" SET "description" = $1, "updated_at" = $2 WHERE "meals"."id" = $3[0m  [["description", "Esse prato é uma sacanagem"], ["updated_at", "2021-11-20 15:15:01.153415"], ["id", 2]]
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+  [1m[36mTRANSACTION (42.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:25:in `update'
+Completed 200 OK in 61ms (Views: 0.4ms | ActiveRecord: 46.3ms | Allocations: 10007)
+
+
+Started DELETE "/api/v1/meals/delete/2" for 127.0.0.1 at 2021-11-20 12:16:26 -0300
+Processing by Api::V1::MealsController#delete as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:32:in `delete'
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.1ms | Allocations: 522)
+
+
+Started DELETE "/api/v1/meals/delete/1" for 127.0.0.1 at 2021-11-20 12:16:29 -0300
+Processing by Api::V1::MealsController#delete as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:32:in `delete'
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.2ms | Allocations: 488)
+
+
+Started DELETE "/api/v1/meals/delete/1" for 127.0.0.1 at 2021-11-20 12:16:59 -0300
+Processing by Api::V1::MealsController#delete as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:32:in `delete'
+Completed 400 Bad Request in 12ms (ActiveRecord: 2.6ms | Allocations: 5220)
+
+
+Started DELETE "/api/v1/meals/delete/2" for 127.0.0.1 at 2021-11-20 12:18:16 -0300
+Processing by Api::V1::MealsController#delete as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:32:in `delete'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:33:in `delete'
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."meal_id" = $1[0m  [["meal_id", 2]]
+  ↳ app/controllers/api/v1/meals_controller.rb:33:in `delete'
+  [1m[36mMeal Destroy (0.3ms)[0m  [1m[31mDELETE FROM "meals" WHERE "meals"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/meals_controller.rb:33:in `delete'
+  [1m[36mTRANSACTION (37.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:33:in `delete'
+Completed 200 OK in 97ms (Views: 0.7ms | ActiveRecord: 41.3ms | Allocations: 11325)
+
+
+Started GET "/api/v1/meals/" for 127.0.0.1 at 2021-11-20 12:18:20 -0300
+Processing by Api::V1::MealsController#index as */*
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals"[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 766)
+
+
+Started GET "/api/v1/meals/show/2" for 127.0.0.1 at 2021-11-20 12:18:23 -0300
+Processing by Api::V1::MealsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:8:in `show'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms | Allocations: 502)
+
+
