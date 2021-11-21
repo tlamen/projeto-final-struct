@@ -8,3 +8,5 @@
 
 categories = Category.create([{name: 'hamburgueres'}, {name: 'acompanhamentos'}, {name: 'sobremesas'}, {name: 'bebidas'}])
 meals = Meal.create({name: 'Hamburguer de siri', category_id: 1, price: 10.00, description: "Melhor prato do restaurante"})
+User.create({email: "jao@jao" ,name: "jao" , password: "jaojao" })
+admin = User.create({email: "adm@adm", name: "adeministrador", password: "123456"})
