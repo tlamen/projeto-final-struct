@@ -15,7 +15,6 @@ class Api::V1::MealsController < ApplicationController
         meal = Meal.create(meal_params)
         meal.save!
         render json: meal, status: 201
-
     rescue StandardError
         head(:unprocessable_entity)
     end
@@ -37,7 +36,8 @@ class Api::V1::MealsController < ApplicationController
     end
 
     # Private methods
-
+    private
+    
     def meal_params
         params.require(:meal).permit(
             :name,
