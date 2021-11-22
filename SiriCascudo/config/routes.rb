@@ -12,13 +12,13 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  get '/login', to: 'users#login'
-  post '/create', to: 'users#register'
-  scope 'profile' do
-    get '/', to: 'users#show'
-    delete '/delete', to: 'users#delete'
+  scope 'users' do
+    get 'login', to: 'users#login'
+    post 'create', to: 'users#register'
+    get 'logout', to: 'users#logout'
+    get 'show', to: 'users#show'
     patch 'update', to: 'users#update'
+    delete 'delete', to: 'users#delete'
   end
 
   # Handling auth_failure

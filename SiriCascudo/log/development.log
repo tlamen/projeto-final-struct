@@ -4184,3 +4184,576 @@ Processing by UsersController#update as */*
 Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 3425)
 
 
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:08:40 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as */*
+  Parameters: {"name"=>"Artur", "email"=>"ala@ala", "password"=>"[FILTERED]", "user"=>{"email"=>"ala@ala", "name"=>"Artur"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 154ms (Views: 0.3ms | ActiveRecord: 6.5ms | Allocations: 354534)
+
+
+Started DELETE "/profile/delete" for 127.0.0.1 at 2021-11-22 14:08:48 -0300
+Processing by UsersController#delete as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.2ms | Allocations: 2466)
+
+
+Started DELETE "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:08:48 -0300
+Processing by ApplicationController#authentication_failure as */*
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 188)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:08:52 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"ala@ala", "password"=>"[FILTERED]", "user"=>{"email"=>"ala@ala"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 200 OK in 173ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 1946)
+
+
+Started DELETE "/profile/delete" for 127.0.0.1 at 2021-11-22 14:09:06 -0300
+Processing by UsersController#delete as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:20:in `delete'
+  [1m[36mFavorite Load (5.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/users_controller.rb:20:in `delete'
+  [1m[36mUser Destroy (0.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/users_controller.rb:20:in `delete'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:20:in `delete'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 8.2ms | Allocations: 7817)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:09:12 -0300
+Processing by UsersController#register as */*
+  Parameters: {"name"=>"Artur", "email"=>"ala@ala", "password"=>"[FILTERED]", "user"=>{"email"=>"ala@ala", "name"=>"Artur"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 11ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 5786)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:09:37 -0300
+Processing by UsersController#register as */*
+  Parameters: {"name"=>"Artur", "email"=>"ala@ala", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"email"=>"ala@ala", "name"=>"Artur"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 9ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 5641)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:09:51 -0300
+Processing by UsersController#register as */*
+  Parameters: {"user"=>{"name"=>"Ola", "email"=>"felipe@cal.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password_confirmation[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."authentication_token" = $1[0m  [["authentication_token", "RigWxW_fXKWat6J_WyDr"]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "name", "authentication_token") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "felipe@cal.com"], ["encrypted_password", "$2a$12$80FaDBtdhggPupSwqOTmoOM.aqV1csjYSh31BnTNONs6.Nyu2vRlu"], ["created_at", "2021-11-22 17:09:51.204641"], ["updated_at", "2021-11-22 17:09:51.204641"], ["name", "Ola"], ["authentication_token", "RigWxW_fXKWat6J_WyDr"]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 201 Created in 184ms (Views: 0.2ms | ActiveRecord: 8.2ms | Allocations: 6779)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:10:14 -0300
+Processing by UsersController#register as */*
+  Parameters: {"user"=>{"name"=>"Ola", "email"=>"felipe@cal.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 176ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 5723)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:10:57 -0300
+Processing by UsersController#register as */*
+  Parameters: {"user"=>{"name"=>"Ola", "email"=>"felipe@cal.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 177ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 5719)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:11:28 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"meal"=>{}}
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.7ms | Allocations: 168)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:11:33 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"meal"=>{}}
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.0ms | Allocations: 75)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:11:41 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "meal"=>{"name"=>"a"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 422 Unprocessable Entity in 19ms (ActiveRecord: 2.5ms | Allocations: 9790)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:12:40 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "category_id"=>1, "description"=>"a", "price"=>10.1, "meal"=>{"name"=>"a", "description"=>"a", "price"=>10.1, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (5.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Create (0.4ms)[0m  [1m[32mINSERT INTO "meals" ("name", "description", "price", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "a"], ["description", "a"], ["price", 10.1], ["category_id", 1], ["created_at", "2021-11-22 17:12:40.543365"], ["updated_at", "2021-11-22 17:12:40.543365"]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 AND "meals"."id" != $2 LIMIT $3[0m  [["name", "a"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 201 Created in 20ms (Views: 0.2ms | ActiveRecord: 8.9ms | Allocations: 7895)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:12:47 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "category_id"=>1, "description"=>"a", "price"=>10.1, "meal"=>{"name"=>"a", "description"=>"a", "price"=>10.1, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 422 Unprocessable Entity in 9ms (ActiveRecord: 1.1ms | Allocations: 4975)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:13:29 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "category_id"=>1, "description"=>"a", "price"=>10.1, "meal"=>{"name"=>"a", "description"=>"a", "price"=>10.1, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 3.7ms | Allocations: 12258)
+
+
+  
+NoMethodError (undefined method `message' for StandardError:Class):
+  
+app/controllers/api/v1/meals_controller.rb:20:in `rescue in create'
+app/controllers/api/v1/meals_controller.rb:14:in `create'
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:13:44 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "category_id"=>1, "description"=>"a", "price"=>10.1, "meal"=>{"name"=>"a", "description"=>"a", "price"=>10.1, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 422 Unprocessable Entity in 16ms (Views: 0.1ms | ActiveRecord: 3.9ms | Allocations: 11510)
+
+
+Started POST "/api/v1/meals/create" for 127.0.0.1 at 2021-11-22 14:14:52 -0300
+Processing by Api::V1::MealsController#create as */*
+  Parameters: {"name"=>"a", "category_id"=>1, "description"=>"a", "price"=>10.1, "meal"=>{"name"=>"a", "description"=>"a", "price"=>10.1, "category_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mMeal Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "meals" WHERE "meals"."name" = $1 LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/meals_controller.rb:16:in `create'
+Completed 422 Unprocessable Entity in 8ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 4997)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:15:37 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Artur", "email"=>"aratas", "user"=>{"email"=>"aratas", "name"=>"Artur"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "ala@ala"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (ActiveRecord: 1.6ms | Allocations: 1864)
+
+
+Started PATCH "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:15:37 -0300
+Processing by ApplicationController#authentication_failure as */*
+  Parameters: {"application"=>{}}
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 185)
+
+
+Started POST "/create" for 127.0.0.1 at 2021-11-22 14:15:40 -0300
+Processing by UsersController#register as */*
+  Parameters: {"user"=>{"name"=>"Ola", "email"=>"felipe@cal.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:34:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:35:in `register'
+Completed 422 Unprocessable Entity in 178ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 10438)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:15:54 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"felipe@cal.com", "password"=>"[FILTERED]", "user"=>{"email"=>"felipe@cal.com"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 200 OK in 174ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 935)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:16:26 -0300
+Processing by UsersController#update as */*
+  Parameters: {"email"=>"aratas", "user"=>{"email"=>"aratas"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+[31mUnpermitted parameters: :email, :user, :user_email, :user_token[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 3572)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:16:33 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Artur", "user"=>{"name"=>"Artur"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+[31mUnpermitted parameters: :user, :user_email, :user_token[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "name" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2021-11-22 17:16:33.789154"], ["name", "Artur"], ["id", 6]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 13ms (Views: 0.5ms | ActiveRecord: 6.8ms | Allocations: 4117)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:16:49 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Artur", "user"=>{"name"=>"Artur"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 2.2ms | Allocations: 9043)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:16:54 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "name" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2021-11-22 17:16:54.475289"], ["name", "Felipe"], ["id", 6]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 6.3ms | Allocations: 4068)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:19:22 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 32ms (Views: 0.6ms | ActiveRecord: 1.0ms | Allocations: 3342)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:19:23 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 3341)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:19:30 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "@cal.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.2ms | Allocations: 1047)
+
+
+Started PATCH "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:19:30 -0300
+Processing by ApplicationController#authentication_failure as */*
+  Parameters: {"application"=>{}}
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 138)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:19:33 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `update'
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 3335)
+
+
+Started GET "/profile/update" for 127.0.0.1 at 2021-11-22 14:27:30 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/profile/update"):
+  
+Started GET "/logout" for 127.0.0.1 at 2021-11-22 14:27:39 -0300
+Processing by UsersController#logout as */*
+Completed 400 Bad Request in 1ms (Views: 0.2ms | Allocations: 810)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-11-22 14:27:54 -0300
+Processing by UsersController#logout as */*
+Completed 400 Bad Request in 1ms (Views: 0.1ms | Allocations: 805)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:28:05 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"felipe@cal.com", "password"=>"[FILTERED]", "user"=>{"email"=>"felipe@cal.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 200 OK in 176ms (Views: 0.6ms | ActiveRecord: 3.4ms | Allocations: 5460)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:28:42 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"felipe@cal.com", "password"=>"[FILTERED]", "user"=>{"email"=>"felipe@cal.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 200 OK in 169ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 731)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-11-22 14:29:13 -0300
+Processing by UsersController#logout as */*
+Completed 400 Bad Request in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 635)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-11-22 14:31:15 -0300
+Processing by UsersController#logout as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:42:in `logout'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "felipe@cal.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:42:in `logout'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."authentication_token" = $1[0m  [["authentication_token", "SSwSx8qg6uxQ464QrMfA"]]
+  ↳ app/controllers/users_controller.rb:42:in `logout'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "authentication_token" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2021-11-22 17:31:15.905466"], ["authentication_token", "SSwSx8qg6uxQ464QrMfA"], ["id", 6]]
+  ↳ app/controllers/users_controller.rb:42:in `logout'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:42:in `logout'
+Completed 200 OK in 23ms (Views: 0.3ms | ActiveRecord: 5.4ms | Allocations: 11163)
+
+
+Started GET "/logout" for 127.0.0.1 at 2021-11-22 14:31:17 -0300
+Processing by UsersController#logout as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.4ms | Allocations: 1128)
+
+
+Started GET "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:31:17 -0300
+Processing by ApplicationController#authentication_failure as */*
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 138)
+
+
+Started GET "/profile/" for 127.0.0.1 at 2021-11-22 14:32:23 -0300
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.2ms | Allocations: 1012)
+
+
+Started GET "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:32:23 -0300
+Processing by ApplicationController#authentication_failure as */*
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:32:36 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"adm@adm", "password"=>"[FILTERED]", "user"=>{"email"=>"adm@adm"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 711)
+
+
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:35:14 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/login" for 127.0.0.1 at 2021-11-22 14:35:14 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/users/login" for 127.0.0.1 at 2021-11-22 14:35:23 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"adm@adm", "password"=>"[FILTERED]", "user"=>{"email"=>"adm@adm"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `login'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 1043)
+
+
+Started PATCH "/profile/update" for 127.0.0.1 at 2021-11-22 14:35:31 -0300
+  
+ActionController::RoutingError (No route matches [PATCH] "/profile/update"):
+  
+Started PATCH "/users/update" for 127.0.0.1 at 2021-11-22 14:35:37 -0300
+Processing by UsersController#update as */*
+  Parameters: {"name"=>"Felipe", "user"=>{"name"=>"Felipe"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "felipe@cal.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 9ms (ActiveRecord: 1.3ms | Allocations: 5791)
+
+
+Started PATCH "/authentication_failure" for 127.0.0.1 at 2021-11-22 14:35:37 -0300
+Processing by ApplicationController#authentication_failure as */*
+  Parameters: {"application"=>{}}
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 185)
+
+

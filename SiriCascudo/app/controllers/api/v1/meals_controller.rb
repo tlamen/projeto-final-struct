@@ -15,8 +15,8 @@ class Api::V1::MealsController < ApplicationController
         meal = Meal.create(meal_params)
         meal.save!
         render json: meal, status: 201
-    rescue StandardError
-        head(:unprocessable_entity)
+    rescue StandardError => e
+        render json: {message: e.message}, status: :unprocessable_entity
     end
 
     def update

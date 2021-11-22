@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: [:show, :delete, :update]
+    acts_as_token_authentication_handler_for User, only: [:show, :delete, :update, :logout]
 
     def login
         user = User.find_by!(email: params[:email])
@@ -38,11 +38,17 @@ class UsersController < ApplicationController
         render json: {message: e.message}, status: :unprocessable_entity
     end
 
+    def logout
+        current_user.update! authentication_token: nil
+        render json: {message: "Deslogado em todos os aparelhos"}
+    rescue StandardError => e
+        render json: {message: e.message}, status: :bad_request
+    end
+
     private
 
     def create_user_params
-        params.require(:user)
-        params.permit(
+        params.require(:user).permit(
             :email,
             :name,
             :password
@@ -50,8 +56,7 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.require(:user)
-        params.permit(
+        params.require(:user).permit(
             :name,
             :password
         )
