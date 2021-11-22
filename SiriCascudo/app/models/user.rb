@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_token_authenticatable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,6 +7,6 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   
-  validates :email, uniqueness: true
+  validates_uniqueness_of :email
   validates :name, :email, presence: true
 end
