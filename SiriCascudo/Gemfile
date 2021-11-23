@@ -46,6 +46,9 @@ gem 'validates_timeliness'
 
 gem 'faker'
 
+# Serializer
+gem 'active_model_serializers'
+
 #User authentication
 gem 'devise'
 gem 'simple_token_authentication'

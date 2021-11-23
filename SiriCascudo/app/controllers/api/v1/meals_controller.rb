@@ -43,7 +43,8 @@ class Api::V1::MealsController < ApplicationController
             :name,
             :category_id,
             :description,
-            :price
+            :price,
+            :picture
         )
     end
 end
