@@ -26,8 +26,8 @@ class UsersController < ApplicationController
     def update
         current_user.update!(update_user_params)
         render json: current_user
-    rescue StandardError
-        head(:bad_request)
+    rescue StandardError => e
+        render json: {message: e.message}, status: :bad_request
     end
 
     def register
@@ -51,14 +51,17 @@ class UsersController < ApplicationController
         params.require(:user).permit(
             :email,
             :name,
-            :password
+            :password,
+            :password_confirmation
         )
     end
 
     def update_user_params
         params.require(:user).permit(
             :name,
-            :password
+            :password,
+            :password_confirmation,
+            :profile_picture
         )
     end
 end
