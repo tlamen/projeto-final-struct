@@ -1,4 +1,6 @@
 class Api::V1::MealsController < ApplicationController
+    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
+
     def index
         meals = Meal.all
         render json: meals, status: 200
@@ -12,25 +14,37 @@ class Api::V1::MealsController < ApplicationController
     end
 
     def create
-        meal = Meal.create(meal_params)
-        meal.save!
-        render json: meal, status: 201
+        if current_user.is_admin
+            meal = Meal.create(meal_params)
+            meal.save!
+            render json: meal, status: 201
+        else
+            render json: {message: "not admin"},status: :unauthorized
+        end
     rescue StandardError => e
         render json: {message: e.message}, status: :unprocessable_entity
     end
 
     def update
-        meal = Meal.find(params[:id])
-        meal.update!(meal_params)
-        render json: meal, status: 200
+        if current_user.is_admin
+            meal = Meal.find(params[:id])
+            meal.update!(meal_params)
+            render json: meal, status: 200
+        else
+            render json: {message: "not admin"},status: :unauthorized
+        end
     rescue StandardError
         head(:unprocessable_entity)
     end
 
     def delete
-        meal = Meal.find(params[:id])
-        meal.destroy!
-        render json: meal, status: 200
+        if current_user.is_admin
+            meal = Meal.find(params[:id])
+            meal.destroy!
+            render json: meal, status: 200
+        else
+            render json: {message: "not admin"}, status: :unauthorized
+        end
     rescue StandardError
         head(:bad_request)
     end
