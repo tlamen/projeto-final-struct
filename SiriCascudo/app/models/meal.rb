@@ -4,4 +4,6 @@ class Meal < ApplicationRecord
   
   validates_uniqueness_of :name
   validates :name, :description, :price, presence: true
+
+  has_one_attached :picture
 end
