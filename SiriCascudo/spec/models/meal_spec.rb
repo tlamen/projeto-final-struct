@@ -29,6 +29,10 @@ RSpec.describe Meal, type: :model do
       it { expect(build(:meal, name: "")).not_to be_valid }
     end
     
+    context "if price is smaller or equal to 0" do
+      it { expect(build(:meal, price: 0)).not_to be_valid }
+      it { expect(build(:meal, price: -1)).not_to be_valid }
+    end
     
   end
 
