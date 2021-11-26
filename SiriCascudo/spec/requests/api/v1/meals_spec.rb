@@ -3,7 +3,21 @@ require 'rails_helper'
 RSpec.describe "Api::V1::Meals", type: :request do
 
   describe "GET #index" do
-    it {get '/api/v1/meals'; expect(response).to have_http_status(:ok)}
+    before do
+      create(:meal)
+      get "/api/v1/meals/"
+    end
+
+    it {expect(response).to have_http_status(:ok) }
+
+    it "returns with json" do
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+    end
+
+    it "returns 1 element" do
+      expect(JSON.parse(response.body).size).to eq(1)
+    end
+
   end
 
   describe "GET #show/:id" do
@@ -19,17 +33,32 @@ RSpec.describe "Api::V1::Meals", type: :request do
     end
   end
   
-  describe "POST #create" do
-    valid_params = { }
-    it "user is admin" do
-      adm = create(:user, :admin)
-      post '/api/v1/meals/create', params
+  # Falta descobrir como passar o current_user e como passar a categoria como parâmetro
+  describe "POST #create" do 
+      let(:params) do {
+      name: "hamburguer de siri",
+      description: "bem gostoso",
+      price: 10.0
+      # Categoria
+    }
     end
-    
-    it "user isn't admin" do
-      
+
+    context "with valid params" do
+      before do
+        post "/api/v1/meals/create", params: { meal: params }
+      end
+
+      # Erro
+      it "returns succesful response" do
+        expect(response).to have_http_status(:created)
+      end
+
+      # Erro
+      it "creates the meal" do
+        new_meal = Meal.find_by(name: "hamburguer de siri")
+        expect(new_meal).not_to be_nil
+      end
     end
-    
   end
   
 end

@@ -1,5 +1,5 @@
 class Api::V1::MealsController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
+    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete], fallback_to_devise: false
 
     def index
         meals = Meal.all
