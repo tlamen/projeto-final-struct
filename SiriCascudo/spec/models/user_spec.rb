@@ -31,8 +31,8 @@ RSpec.describe User, type: :model do
     end
     context "email must be unique" do
       it "" do
-        user1 = User.create(email:"unique@email",name: "Artur", password: "123456")
-        user2 = User.new(email:"unique@email",name: "Artur", password: "123456")
+        user1 = create(:user,email:"unique@email")
+        user2 = build(:user, email:"unique@email")
         expect(user1).to be_valid
         expect(user2).not_to be_valid  
       end

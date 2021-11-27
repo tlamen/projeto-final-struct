@@ -9037,3 +9037,747 @@ Processing by UsersController#login as */*
 Completed 404 Not Found in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 337)
 
 
+Started GET "/users/login" for 127.0.0.1 at 2021-11-27 15:09:41 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"jao@jao", "password"=>"[FILTERED]", "user"=>{"email"=>"jao@jao"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `login'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `profile_picture_url'
+[active_model_serializers]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "jao@jao"], ["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "zgi2uqk151szrhqy4qrv0glo2rnw"], ["filename", "1.png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 37843], ["checksum", "2GG50g1JYQbs/xkrBmxpgA=="], ["created_at", "2021-11-27 18:09:42.041518"]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Create (0.7ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "profile_picture"], ["record_type", "User"], ["record_id", 1], ["blob_id", 1], ["created_at", "2021-11-27 18:09:42.044447"]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1 WHERE "users"."id" = $2[0m  [["updated_at", "2021-11-27 18:09:42.046373"], ["id", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers]   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:13:in `profile_picture_url'
+[active_model_serializers] [36m  Disk Storage (0.3ms) [0m[32mUploaded file to key: zgi2uqk151szrhqy4qrv0glo2rnw (checksum: 2GG50g1JYQbs/xkrBmxpgA==)[0m
+[active_model_serializers] [ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7) to Async(default) with arguments: #<GlobalID:0x00007f4fe061a2b0 @uri=#<URI::GID gid://siri-cascudo/ActiveStorage::Blob/1>>
+[active_model_serializers]   [1m[36mFavorite Load (0.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:15:in `login'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (60.21ms)
+Completed 200 OK in 301ms (Views: 55.7ms | ActiveRecord: 16.3ms | Allocations: 47142)
+
+
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7] Performing ActiveStorage::AnalyzeJob (Job ID: 5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7) from Async(default) enqueued at 2021-11-27T18:09:42Z with arguments: #<GlobalID:0x00007f4fa406be68 @uri=#<URI::GID gid://siri-cascudo/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7] [36m  Disk Storage (0.1ms) [0m[34mDownloaded file from key: zgi2uqk151szrhqy4qrv0glo2rnw[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7]   [1m[36mActiveStorage::Blob Update (0.3ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7]   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7] Performed ActiveStorage::AnalyzeJob (Job ID: 5cc8f344-c3bb-4b4a-b48a-ebd6c4828bd7) from Async(default) in 171.31ms
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:10:19 -0300
+  
+NameError (uninitialized constant V1):
+  
+app/controllers/api/v1/favorites_controller.rb:1:in `<main>'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:10:58 -0300
+  
+NameError (uninitialized constant V1):
+  
+app/controllers/api/v1/favorites_controller.rb:1:in `<main>'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:11:38 -0300
+  
+NameError (uninitialized constant V1):
+  
+app/controllers/api/v1/favorites_controller.rb:1:in `<main>'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:12:50 -0300
+Processing by Api::V1::FavoritesController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.06ms)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 1175)
+
+
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:12:55 -0300
+Processing by Api::V1::FavoritesController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.03ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 422)
+
+
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:13:23 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:13:29 -0300
+Processing by Api::V1::FavoritesController#index as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 362)
+
+
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:13:37 -0300
+Processing by Api::V1::FavoritesController#index as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 353)
+
+
+Started GET "/users/login" for 127.0.0.1 at 2021-11-27 15:13:46 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"jao@jao", "password"=>"[FILTERED]", "user"=>{"email"=>"jao@jao"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `login'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:8:in `profile_picture_url'
+[active_model_serializers]   [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:15:in `login'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (25.33ms)
+Completed 200 OK in 210ms (Views: 22.2ms | ActiveRecord: 7.2ms | Allocations: 22800)
+
+
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:14:16 -0300
+Processing by Api::V1::FavoritesController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.06ms)
+Completed 200 OK in 12ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 4253)
+
+
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:17:33 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:18:36 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/favorites_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/favorites_controller.rb:53: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/favorites/index" for 127.0.0.1 at 2021-11-27 15:18:50 -0300
+Processing by Api::V1::FavoritesController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.11ms)
+Completed 200 OK in 18ms (Views: 2.9ms | ActiveRecord: 3.4ms | Allocations: 9088)
+
+
+Started GET "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:19:18 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/favorites/create"):
+  
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:19:27 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 4ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1515)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:19:50 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActionController::Parameters (0.04ms)
+Completed 201 Created in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1338)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:20:14 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Range (0.06ms)
+Completed 201 Created in 11ms (Views: 0.6ms | ActiveRecord: 3.1ms | Allocations: 6889)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:20:33 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+...nder json: {favorite_params...}, status: 201
+...                              ^
+):
+  
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:20:58 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+... render json: {favorite_params}, status: 201
+...                              ^
+):
+  
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected '}', expecting =>
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:21:11 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActionController::Parameters (0.18ms)
+Completed 201 Created in 12ms (Views: 1.8ms | ActiveRecord: 2.6ms | Allocations: 6856)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:21:15 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Range (0.14ms)
+Completed 201 Created in 11ms (Views: 1.3ms | ActiveRecord: 2.3ms | Allocations: 6854)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:21:29 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+...nder json: (favorite_params..., user_id: current_user.id), s...
+...                              ^
+):
+  
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:21:56 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+...ender json: (favorite_params.., user_id: current_user.id, st...
+...                              ^
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected label, expecting '='
+...er_id: current_user.id, status: 201
+...                        ^~~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:27: syntax error, unexpected `end', expecting ')'
+        end
+        ^~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:30: syntax error, unexpected `end', expecting ')'
+    end
+    ^~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/favorites_controller.rb:54: syntax error, unexpected `end', expecting ')'):
+  
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected label, expecting '='
+app/controllers/api/v1/favorites_controller.rb:27: syntax error, unexpected `end', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:30: syntax error, unexpected `end', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:54: syntax error, unexpected `end', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected ',', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:24: syntax error, unexpected label, expecting '='
+app/controllers/api/v1/favorites_controller.rb:27: syntax error, unexpected `end', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:30: syntax error, unexpected `end', expecting ')'
+app/controllers/api/v1/favorites_controller.rb:54: syntax error, unexpected `end', expecting ')'
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:21:59 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Range (0.07ms)
+Completed 201 Created in 13ms (Views: 0.8ms | ActiveRecord: 2.9ms | Allocations: 6926)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:22:06 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActionController::Parameters (0.06ms)
+Completed 201 Created in 12ms (Views: 0.6ms | ActiveRecord: 2.7ms | Allocations: 6861)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:23:02 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActionController::Parameters (0.05ms)
+Completed 201 Created in 13ms (Views: 0.5ms | ActiveRecord: 4.5ms | Allocations: 6863)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:23:45 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mMeal Load (0.7ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 30ms (Views: 0.5ms | ActiveRecord: 7.2ms | Allocations: 17338)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:23:58 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 3751)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:24:07 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mFavorite Create (0.8ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "meal_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["meal_id", 1], ["created_at", "2021-11-27 18:24:07.737773"], ["updated_at", "2021-11-27 18:24:07.737773"]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Favorite (0.12ms)
+Completed 201 Created in 39ms (Views: 0.7ms | ActiveRecord: 9.1ms | Allocations: 18372)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 15:24:09 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "meal_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["meal_id", 1], ["created_at", "2021-11-27 18:24:09.513557"], ["updated_at", "2021-11-27 18:24:09.513557"]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Favorite (0.15ms)
+Completed 201 Created in 16ms (Views: 0.6ms | ActiveRecord: 6.5ms | Allocations: 4776)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 16:24:25 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 220ms (Views: 1.3ms | ActiveRecord: 14.2ms | Allocations: 366663)
+
+
+Started GET "/users/login" for 127.0.0.1 at 2021-11-27 16:24:44 -0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"adm@adm", "password"=>"[FILTERED]", "user"=>{"email"=>"adm@adm"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `login'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:7:in `profile_picture_url'
+[active_model_serializers]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "adm@adm"], ["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "1daa73knh8lkfvmkajvjd5g2g9hu"], ["filename", "adm.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 19023], ["checksum", "Po9C96+qYeQBSJMQPFj5JA=="], ["created_at", "2021-11-27 19:24:44.958844"]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mActiveStorage::Attachment Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "profile_picture"], ["record_type", "User"], ["record_id", 2], ["blob_id", 2], ["created_at", "2021-11-27 19:24:44.960375"]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1 WHERE "users"."id" = $2[0m  [["updated_at", "2021-11-27 19:24:44.961482"], ["id", 2]]
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers]   [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   ↳ app/serializers/user_serializer.rb:10:in `profile_picture_url'
+[active_model_serializers] [36m  Disk Storage (0.5ms) [0m[32mUploaded file to key: 1daa73knh8lkfvmkajvjd5g2g9hu (checksum: Po9C96+qYeQBSJMQPFj5JA==)[0m
+[active_model_serializers] [ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 2fc1dffb-d0d9-4435-8087-1b6e1d0bb691) to Async(default) with arguments: #<GlobalID:0x00007f8e6c468eb0 @uri=#<URI::GID gid://siri-cascudo/ActiveStorage::Blob/2>>
+[active_model_serializers]   [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:15:in `login'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (47.13ms)
+Completed 200 OK in 221ms (Views: 44.1ms | ActiveRecord: 7.1ms | Allocations: 35585)
+
+
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691] Performing ActiveStorage::AnalyzeJob (Job ID: 2fc1dffb-d0d9-4435-8087-1b6e1d0bb691) from Async(default) enqueued at 2021-11-27T19:24:44Z with arguments: #<GlobalID:0x00007f8e38068060 @uri=#<URI::GID gid://siri-cascudo/ActiveStorage::Blob/2>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691] [36m  Disk Storage (0.1ms) [0m[34mDownloaded file from key: 1daa73knh8lkfvmkajvjd5g2g9hu[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691]   [1m[36mActiveStorage::Blob Update (0.5ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 2]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691]   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [2fc1dffb-d0d9-4435-8087-1b6e1d0bb691] Performed ActiveStorage::AnalyzeJob (Job ID: 2fc1dffb-d0d9-4435-8087-1b6e1d0bb691) from Async(default) in 7.6ms
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 16:25:02 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jao@jao"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mMeal Load (0.4ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 422 Unprocessable Entity in 16ms (Views: 0.4ms | ActiveRecord: 2.9ms | Allocations: 7127)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 16:25:11 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "meal_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["meal_id", 1], ["created_at", "2021-11-27 19:25:11.568851"], ["updated_at", "2021-11-27 19:25:11.568851"]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."id" != $2 AND "favorites"."user_id" = $3 LIMIT $4[0m  [["meal_id", 1], ["id", 3], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+[active_model_serializers] Rendered FavoriteSerializer with ActiveModelSerializers::Adapter::Attributes (0.17ms)
+Completed 201 Created in 19ms (Views: 4.7ms | ActiveRecord: 4.4ms | Allocations: 9346)
+
+
+Started POST "/api/v1/favorites/create" for 127.0.0.1 at 2021-11-27 16:25:13 -0300
+Processing by Api::V1::FavoritesController#create as */*
+  Parameters: {"meal_id"=>1, "favorite"=>{"meal_id"=>1}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "adm@adm"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE "favorites"."meal_id" = $1 AND "favorites"."user_id" = $2 LIMIT $3[0m  [["meal_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/favorites_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 12ms (Views: 1.0ms | ActiveRecord: 1.2ms | Allocations: 7133)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:24:08 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:12: syntax error, unexpected '}', expecting =>
+...           :include => {:meals}
+...                              ^
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:12: syntax error, unexpected '}', expecting =>
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:12: syntax error, unexpected '}', expecting =>
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:25:09 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:25:21 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:25:22 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:26:22 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:26:27 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:28:03 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:38: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:49: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:60: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:28:44 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:13: syntax error, unexpected symbol literal, expecting ')'
+            :except => {}
+            ^
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:14: syntax error, unexpected ')', expecting `end'
+        )
+        ^
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:13: syntax error, unexpected symbol literal, expecting ')'
+app/controllers/api/v1/categories_controller.rb:14: syntax error, unexpected ')', expecting `end'
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:13: syntax error, unexpected symbol literal, expecting ')'
+app/controllers/api/v1/categories_controller.rb:14: syntax error, unexpected ')', expecting `end'
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:29:01 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:29:28 -0300
+  
+SyntaxError (/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+    rescue StandardError
+    ^~~~~~
+/home/artistreak/Desktop/Struct/Trainee/projeto-final/projeto-final-struct-api/SiriCascudo/app/controllers/api/v1/categories_controller.rb:62: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:62: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/categories_controller.rb:39: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:50: syntax error, unexpected `rescue', expecting `end'
+app/controllers/api/v1/categories_controller.rb:62: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:30:15 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (2.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.3ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+[active_model_serializers] Rendered CategorySerializer with ActiveModelSerializers::Adapter::Attributes (0.24ms)
+Completed 200 OK in 28ms (Views: 3.4ms | ActiveRecord: 6.3ms | Allocations: 18562)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:30:37 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+[active_model_serializers] Rendered CategorySerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 200 OK in 26ms (Views: 1.2ms | ActiveRecord: 4.3ms | Allocations: 10981)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:30:37 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.6ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+[active_model_serializers] Rendered CategorySerializer with ActiveModelSerializers::Adapter::Attributes (0.12ms)
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 0.9ms | Allocations: 1842)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:30:52 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+[active_model_serializers] Rendered CategorySerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 3.5ms | Allocations: 10955)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:31:04 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 17ms (Views: 0.5ms | ActiveRecord: 3.2ms | Allocations: 10547)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:31:29 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.5ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 0.8ms | ActiveRecord: 0.7ms | Allocations: 1489)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:32:13 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.5ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 20ms (Views: 0.5ms | ActiveRecord: 3.9ms | Allocations: 10542)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:32:49 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 3.9ms | Allocations: 10426)
+
+
+Started GET "/api/v1/categories/index" for 127.0.0.1 at 2021-11-27 18:33:06 -0300
+Processing by Api::V1::CategoriesController#index as */*
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/api/v1/categories_controller.rb:6:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.51ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms | Allocations: 1906)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:33:10 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.1ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1590)
+
+
+Started GET "/api/v1/categories/show/1" for 127.0.0.1 at 2021-11-27 18:37:20 -0300
+Processing by Api::V1::CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:10:in `show'
+  [1m[36mMeal Load (0.2ms)[0m  [1m[34mSELECT "meals".* FROM "meals" WHERE "meals"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/controllers/api/v1/categories_controller.rb:11:in `show'
+Completed 200 OK in 18ms (Views: 0.8ms | ActiveRecord: 4.3ms | Allocations: 10453)
+
+

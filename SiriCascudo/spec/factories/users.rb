@@ -4,6 +4,7 @@ FactoryBot.define do
   end
 
   factory :user do
+    id { 666 }
     email { generate(:emails) }
     name { "Artur" }
     password { "123456" }

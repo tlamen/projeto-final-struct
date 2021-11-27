@@ -1,49 +1,49 @@
-class Api::V1::MealsController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
+class Api::V1::FavoritesController < ApplicationController
+    acts_as_token_authentication_handler_for User, fallback_to_devise: false
 
     def index
-        favorites = Favorite.all
-        render json: favorites, status: 200
-    end
-
-    def show
-        favorite = Favorite.find(params[:id])
-        render json: favorite, status: 200
-    rescue StandardError
-        head(404)    
+        if current_user
+            favorites = current_user.favorites
+            render json: favorites, status: 200
+        else
+            head(:bad_request)
+        end
     end
 
     def create
-        favorite = Favorite.create(favorite_params)
-        favorite.save!
-        render json: favorite, status: 201
+        if current_user
+            favorite = favorite_params
+            favorite[:user_id] = current_user.id
+            favorite = Favorite.create(favorite)
+            favorite.save!
+            render json: favorite, status: 201
+        else
+            head(:unauthorized)
+        end
     rescue StandardError => e    
         render json: {message: e.message}, status: :unprocessable_entity
     end
 
     def delete
         favorite = Favorite.find(params[:id])
-        favorite.destroy!
-        render json: favorite, status: 200
+        if favorite.user_id == current_user.id
+            favorite.destroy!
+            render json: favorite, status: 200
+        else
+            head(:unauthorized)
+        end
     rescue StandardError
         head(:bad_request)    
     end
     
-    def update
-        favorite = Favorite.find(params[:id])
-        favorite.update!(favorite_params)
-        render json: favorite, status: 200
-    rescue StandardError
-        head(:unprocessable_entity)
-    end
 
     #private methods
     private
 
     def favorite_params
         params.require(:favorite).permit(
-            :user_id,
             :meal_id
         )
     end
+
 end

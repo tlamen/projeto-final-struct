@@ -4,11 +4,23 @@ Rails.application.routes.draw do
     namespace 'api' do
         namespace 'v1' do
             scope 'meals' do
-                get '/', to: 'meals#index'
+                get '/index', to: 'meals#index'
                 get '/show/:id', to: 'meals#show'
                 post 'create', to: 'meals#create'
                 patch 'update/:id', to: 'meals#update'
                 delete 'delete/:id', to: 'meals#delete'
+            end
+            scope 'categories' do
+                get 'index', to: 'categories#index'
+                get 'show/:id', to: 'categories#show'
+                post 'create', to: 'categories#create'
+                patch 'update/:id', to: 'categories#update'
+                delete 'delete/:id', to: 'categories#delete'
+            end
+            scope 'favorites' do
+                get 'index', to: 'favorites#index'
+                post 'create', to: 'favorites#create'
+                delete 'delete/:id', to: 'favorites#delete'
             end
         end
     end
@@ -22,29 +34,6 @@ Rails.application.routes.draw do
         delete 'delete', to: 'users#delete'
     end
 
-    namespace 'api' do
-        namespace 'v1' do
-            namespace 'categories' do
-                get 'index', to: 'categories#index'
-                get 'show/:id', to: 'categories#show'
-                post 'create', to: 'categories#create'
-                patch 'update/:id', to: 'categories#update'
-                delete 'delete/:id', to: 'categories#delete'
-            end
-        end
-    end
-
-    namespace 'api' do
-        namespace 'v1' do
-            namespace 'favorites' do
-                get 'index', to: 'favorites#index'
-                get 'show/:id', to: 'favorites#show'
-                post 'create', to: 'favorites#create'
-                patch 'update/:id', to: 'favorites#update'
-                delete 'delete/:id', to: 'favorites#delete'
-            end
-        end
-    end
 
      # Handling auth_failure
     get 'authentication_failure', to: 'application#authentication_failure'

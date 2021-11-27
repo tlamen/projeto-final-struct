@@ -6,6 +6,7 @@ RSpec.describe "Users", type: :request do
       post "/users/create", params: {user: {email: "123@123",name: "Artur", password: "123456", password_confirmation: "123456"}}
       expect(response).to have_http_status(:created)
       expect((JSON.parse(response.body)["profile_picture_url"]).is_a?(String)).to be true
+      expect((JSON.parse(response.body)).size).to eq(7)
     end
 
     it "Criando usuário com senha.lenght < 6" do
@@ -55,19 +56,19 @@ RSpec.describe "Users", type: :request do
 
 
   describe "GET #login" do
-    it "logando sem preencher campos" do
-      get '/users/login'
-      expect(response).to have_http_status(:not_found)
-    end
-
-    it "logando como user1 com senha correta" do
-      user1 = create(:user) 
+    it "logando corretamente" do
+      user = create(:user) 
       get '/users/login', params: { 
-        email: user1.email,
+        email: user.email,
         password: "123456"
       }
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)["authentication_token"].length).to be <=30
+    end
+
+    it "logando sem preencher campos" do
+      get '/users/login'
+      expect(response).to have_http_status(:not_found)
     end
 
     it "logando como user1 com senha incorreta" do
@@ -86,7 +87,6 @@ RSpec.describe "Users", type: :request do
       user = create(:user)
       get '/users/show', headers: {'X-User-Token': user.authentication_token,'X-User-Email': user.email}
       expect(response).to have_http_status(:ok)
-
     end
 
     it 'with invalid user authentication token' do
@@ -168,6 +168,8 @@ RSpec.describe "Users", type: :request do
       user = create(:user)
       get '/users/logout', headers: {'X-User-Token': user.authentication_token,'X-User-Email': user.email}
       expect(response).to have_http_status(:ok)
+      get '/users/show', headers: {'X-User-Token': user.authentication_token,'X-User-Email': user.email}
+      expect(response).to have_http_status(:bad_request)
     end
 
     it "invalid user logout" do

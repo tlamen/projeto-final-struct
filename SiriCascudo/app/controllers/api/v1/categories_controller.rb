@@ -1,5 +1,5 @@
-class Api::v1::CategoriesController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
+class Api::V1::CategoriesController < ApplicationController
+    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete], fallback_to_devise: false
 
     def index
         categories = Category.all
@@ -8,7 +8,11 @@ class Api::v1::CategoriesController < ApplicationController
     
     def show
         category = Category.find(params[:id])
-        render json: category, status: 200
+        category_json = category.to_json(
+            :include => {:meals => {only: [:id, :name, :description, :price, :category_id, :picture_url]}},
+            except: [:created_at, :updated_at]
+        )
+        render json: category_json, status: 200
     rescue StandardError
         head(404)
     end
@@ -27,24 +31,26 @@ class Api::v1::CategoriesController < ApplicationController
 
     def delete
         if current_user.is_admin
-            category = Category.create(category_params)
+            category = Category.find(params[:id])
             category.destroy!
-            render json: category, status: 201
+            render json: category, status: :ok
         else
             render json: {message: "not admin"}, status: :unauthorized
+        end
     rescue StandardError
         head(:bad_request)        
     end
 
     def update
         if current_user.is_admin
-            category = Category.create(category_params)
+            category = Category.find(params[:id])
             category.update!(category_params)
-            render json: category, status: 201
+            render json: category, status: :ok
         else
             render json: {message: "not admin"}, status: :unauthorized
-    rescue StandardError
-        head(:unprocessable_entity)
+        end
+    rescue StandardError => e
+        render json: {message: e.class}, status: :unprocessable_entity
     end
 
     #private methods
@@ -54,4 +60,5 @@ class Api::v1::CategoriesController < ApplicationController
         params.require(:category).permit(
             :name
         )
+    end
 end
