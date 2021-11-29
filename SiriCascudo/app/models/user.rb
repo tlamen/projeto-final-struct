@@ -9,6 +9,7 @@ class User < ApplicationRecord
   
   validates_uniqueness_of :email
   validates :name, :email, presence: true
+  validates :is_admin, inclusion: {in: [true,false]}
 
   has_one_attached :profile_picture
 end

@@ -1,5 +1,5 @@
 class Api::V1::MealsController < ApplicationController
-    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
+    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete], fallback_to_devise: false
 
     def index
         meals = Meal.all
@@ -33,8 +33,8 @@ class Api::V1::MealsController < ApplicationController
         else
             render json: {message: "not admin"},status: :unauthorized
         end
-    rescue StandardError
-        head(:unprocessable_entity)
+    rescue StandardError => e
+        render json: {message: e.message}, stauts: :unprocessable_entity
     end
 
     def delete
@@ -46,7 +46,7 @@ class Api::V1::MealsController < ApplicationController
             render json: {message: "not admin"}, status: :unauthorized
         end
     rescue StandardError
-        head(:bad_request)
+        head(:not_found)
     end
 
     # Private methods
