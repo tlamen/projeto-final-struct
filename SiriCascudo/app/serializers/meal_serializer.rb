@@ -3,7 +3,7 @@ class MealSerializer < ActiveModel::Serializer
 
   def picture_url
     if object.picture.attached?
-      Rails.application.routes.url_helpers.rails_blob_path(object.picture)
+      Rails.application.routes.url_helpers.rails_blob_path(object.picture, only_path: true)
     else
       false
     end
