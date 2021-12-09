@@ -3,8 +3,12 @@ class Api::V1::FavoritesController < ApplicationController
 
     def index
         if current_user
-            favorites = Favorite.where user_id: current_user.id
-            render json: favorites, status: 200
+            favorites = Favorite.where(user_id: current_user.id)
+            favoriteMeals = []
+            for fav in favorites do
+                favoriteMeals.push( Meal.find(fav.meal_id) )
+            end
+            render json: favoriteMeals, status: 200
         else
             head(:bad_request)
         end
