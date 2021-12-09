@@ -3,7 +3,7 @@ class Api::V1::FavoritesController < ApplicationController
 
     def index
         if current_user
-            favorites = current_user.favorites
+            favorites = Favorite.where user_id: current_user.id
             render json: favorites, status: 200
         else
             head(:bad_request)
@@ -25,7 +25,7 @@ class Api::V1::FavoritesController < ApplicationController
     end
 
     def delete
-        favorite = Favorite.find(params[:id])
+        favorite = Favorite.where(meal_id: params[:id]).where(user_id: current_user.id)
         if favorite.user_id == current_user.id
             favorite.destroy!
             render json: favorite, status: 200
