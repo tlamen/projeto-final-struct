@@ -22,7 +22,7 @@ class Api::V1::FavoritesController < ApplicationController
             favorite.save!
             render json: favorite, status: 201
         else
-            head(:unauthorized)
+            head(:bad_request)
         end
     rescue StandardError => e    
         render json: {message: e.message}, status: :unprocessable_entity
