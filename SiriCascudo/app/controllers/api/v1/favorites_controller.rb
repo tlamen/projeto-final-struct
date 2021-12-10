@@ -29,8 +29,8 @@ class Api::V1::FavoritesController < ApplicationController
     end
 
     def delete
-        favorite = Favorite.where(user_id: current_user.id).where(meal_id: params[:id])[0]
-        favorite.destroy!
+        favorite = Favorite.where(user_id: current_user.id)
+        favorite.where(meal_id: params[:id])[0].destroy!
         render json: favorite, status: 200
         
     rescue StandardError => e
