@@ -22,22 +22,19 @@ class Api::V1::FavoritesController < ApplicationController
             favorite.save!
             render json: favorite, status: 201
         else
-            head(:unauthorized)
+            head(:bad_request)
         end
     rescue StandardError => e    
         render json: {message: e.message}, status: :unprocessable_entity
     end
 
     def delete
-        favorite = Favorite.where(meal_id: params[:id]).where(user_id: current_user.id)
-        if favorite.user_id == current_user.id
-            favorite.destroy!
-            render json: favorite, status: 200
-        else
-            head(:unauthorized)
-        end
-    rescue StandardError
-        head(:bad_request)    
+        favorite = Favorite.where(user_id: current_user.id)
+        favorite.where(meal_id: params[:id])[0].destroy!
+        render json: favorite, status: 200
+        
+    rescue StandardError => e
+        render json: {message: e.message}, status: :bad_request
     end
     
 
