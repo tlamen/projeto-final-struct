@@ -38,13 +38,18 @@ class Api::V1::MealsController < ApplicationController
     end
 
     def delete
-        if current_user.is_admin
-            meal = Meal.find(params[:id])
-            meal.destroy!
-            render json: meal, status: 200
+        if current_user
+            if current_user.is_admin
+                meal = Meal.find(params[:id])
+                meal.destroy!
+                render json: meal, status: 200
+            else
+                render json: {message: "not admin"}, status: :unauthorized
+            end
         else
-            render json: {message: "not admin"}, status: :unauthorized
+            render json: {message: "an error has occurred"}, status: :bad_request
         end
+       
     rescue StandardError
         head(:not_found)
     end

@@ -30,15 +30,19 @@ class Api::V1::CategoriesController < ApplicationController
     end
 
     def delete
-        if current_user.is_admin
-            category = Category.find(params[:id])
-            category.destroy!
-            render json: category, status: :ok
+        if current_user
+            if current_user.is_admin
+                category = Category.find(params[:id])
+                category.destroy!
+                render json: category, status: :ok
+            else
+                render json: {message: "not admin"}, status: :unauthorized
+            end
         else
-            render json: {message: "not admin"}, status: :unauthorized
+            render json: {message: "an error has occurred"}, status: :bad_request
         end
     rescue StandardError
-        head(:bad_request)        
+        head(:not_found)        
     end
 
     def update
